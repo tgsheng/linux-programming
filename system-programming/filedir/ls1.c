@@ -4,7 +4,7 @@
  *
  *   modify from
  *   Bruce Molay's <Understanding Unix/Linux Programming>
- *   by tgsheng(GitHub) 
+ *   by tgsheng(GitHub)
  */
 
 #include <dirent.h>
@@ -38,12 +38,11 @@ void do_ls(const char *path) {
 
   if ((dirp = opendir(path)) == NULL)
     errExit("opendir");
-  else {
-    errno = 0;
-    while ((direntp = readdir(dirp)))
-      printf("%s\n", direntp->d_name);
-    if (errno) 
-      errExit("readdir");
-    closedir(dirp);
-  }
+
+  errno = 0;
+  while ((direntp = readdir(dirp)))
+    printf("%s\n", direntp->d_name);
+  if (errno)
+    errExit("readdir");
+  closedir(dirp);
 }
